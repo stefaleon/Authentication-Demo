@@ -63,12 +63,20 @@ app.get('/login', function(req, res) {
 });
 
 // user login
-
 app.post('/login', passport.authenticate('local', {
 	successRedirect: '/secret',
 	failureRedirect: '/login'
 }), function(req, res) {
 });
+
+
+// user logout
+app.get('/logout', function(req, res) {
+	req.logout(); // passport destroys user data in the session
+	res.redirect('/');
+});
+
+
 
 
 app.listen(PORT, process.env.IP, function(){
